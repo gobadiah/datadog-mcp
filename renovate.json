@@ -1,6 +1,7 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended"
+  "extends": ["github>shelfio/renovate-config-public"],
+  "labels": ["backend"],
+  "ignoreDeps": [
+    "cimg/node"
   ]
 }
