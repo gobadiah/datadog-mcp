@@ -24,7 +24,8 @@ from datadog_api_client.v2.model.logs_aggregate_sort import LogsAggregateSort
 logger = logging.getLogger(__name__)
 
 # Datadog API configuration
-DATADOG_API_URL = "https://api.datadoghq.com"
+DD_SITE = os.getenv("DD_SITE", "datadoghq.com")
+DATADOG_API_URL = f"https://api.{DD_SITE}"
 DATADOG_API_KEY = os.getenv("DD_API_KEY")
 DATADOG_APP_KEY = os.getenv("DD_APP_KEY")
 
@@ -40,6 +41,7 @@ def get_datadog_configuration() -> Configuration:
     configuration = Configuration()
     configuration.api_key["apiKeyAuth"] = DATADOG_API_KEY
     configuration.api_key["appKeyAuth"] = DATADOG_APP_KEY
+    configuration.server_variables["site"] = DD_SITE
     return configuration
 
 
